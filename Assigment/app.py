@@ -22,8 +22,7 @@ st.set_page_config(
 @st.cache_data 
 def load_data():
     return pd.read_csv("data/df_no_outliers.csv")  # Perbaiki backslash jadi slash
-def load_data():
-    return pd.read_csv("data/df_no_outliers.csv")
+
 
 df = load_data()
 st.write("✅ File data berhasil dimuat")
