@@ -1,0 +1,150 @@
+INFO  2025-04-29 17:53:02.926 +0700 main : com.tableau.OAuthServiceMain - Starting OAuthServiceMain using Java 11.0.22.0.101 on LAPTOP-4C82C4F5 with PID 23764 (C:\Program Files\Tableau\Tableau Public 2024.3\bin\oauthservice.jar started by Rafi in C:\Users\Rafi\AppData\Local\Temp\TableauTemp)
+INFO  2025-04-29 17:53:02.927 +0700 main : com.tableau.OAuthServiceMain - No active profile set, falling back to 1 default profile: "default"
+INFO  2025-04-29 17:53:04.013 +0700 main : com.tableau.grpc.OAuthGrpcServer - OAuthProviderService started, listening on 63780.
+INFO  2025-04-29 17:53:04.052 +0700 main : com.tableau.OAuthServiceMain - Started OAuthServiceMain in 1.508 seconds (JVM running for 2.927)
+INFO  2025-04-29 17:53:04.264 +0700 grpc-default-executor-0 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - Calling into initialAuthorization call
+INFO  2025-04-29 17:53:04.265 +0700 grpc-default-executor-0 : com.tableau.oauth.service.OAuthRequestorRegistry - Getting the oauth provider for googledrive. Using oauth proxy: Galop.
+INFO  2025-04-29 17:53:04.283 +0700 grpc-default-executor-0 : com.tableau.oauth.requestors.GalopRequestor - Requesting oauth tokens for: googledrive
+INFO  2025-04-29 17:53:04.283 +0700 grpc-default-executor-0 : com.tableau.oauth.requestors.GalopRequestor - Request coming from: desktop
+INFO  2025-04-29 17:53:04.349 +0700 grpc-default-executor-0 : com.tableau.oauth.utils.LoadBrowserHelper - Browsing is available.
+INFO  2025-04-29 17:53:04.349 +0700 grpc-default-executor-0 : com.tableau.oauth.utils.LoadBrowserHelper - Sending browser to: https://galop.connectors.tableau.com/prod/v1/auth/googledrive/desktop?callbackurl=http://localhost:63782/Tokens&username=&instanceurl=&role=
+INFO  2025-04-29 17:54:10.189 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - Received request to cancel the current authentication login.
+INFO  2025-04-29 17:54:10.189 +0700 grpc-default-executor-1 : com.tableau.oauth.requestors.GalopRequestor - Cancel login.
+WARN  2025-04-29 17:54:10.192 +0700 grpc-default-executor-0 : com.tableau.oauth.utils.receivers.GenericOAuthReceiver - Operation interrupted, throwing timeout error.
+ERROR 2025-04-29 17:54:10.192 +0700 grpc-default-executor-0 : com.tableau.oauth.requestors.GalopRequestor - Stopping server...
+INFO  2025-04-29 17:54:10.194 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - Altering the response observer that the call is completed
+ERROR 2025-04-29 17:54:10.196 +0700 grpc-default-executor-0 : com.tableau.oauth.service.OAuthService - Exception thrown while attempting to get the oauth tokens: java.io.IOException: Stopping server...
+ERROR 2025-04-29 17:54:10.197 +0700 grpc-default-executor-0 : com.tableau.oauth.service.OAuthService - Authorization request timed out. The user may have closed the browser or cancelled the request.
+java.io.IOException: Stopping server...
+	at com.tableau.oauth.requestors.GalopRequestor.asCleanIOException(GalopRequestor.java:97) ~[oauth-service-impl-20243.0.5-jre8.rel.jar!/:?]
+	at com.tableau.oauth.requestors.GalopRequestor.getOAuthTokens(GalopRequestor.java:131) ~[oauth-service-impl-20243.0.5-jre8.rel.jar!/:?]
+	at com.tableau.oauth.service.OAuthService.initialAuthorization(OAuthService.java:115) ~[oauth-service-impl-20243.0.5-jre8.rel.jar!/:?]
+	at com.tableau.oauth.grpc.OAuthV1GrpcAdapter.initialAuthorization(OAuthV1GrpcAdapter.java:46) ~[oauth-service-impl-20243.0.5-jre8.rel.jar!/:?]
+	at com.tableau.connect.oauthservice.OAuthServiceGrpc$MethodHandlers.invoke(OAuthServiceGrpc.java:895) ~[classes!/:?]
+	at io.grpc.stub.ServerCalls$UnaryServerCallHandler$UnaryServerCallListener.onHalfClose(ServerCalls.java:182) ~[grpc-stub-1.49.2.jar!/:1.49.2]
+	at io.grpc.PartialForwardingServerCallListener.onHalfClose(PartialForwardingServerCallListener.java:35) ~[grpc-api-1.49.2.jar!/:1.49.2]
+	at io.grpc.ForwardingServerCallListener.onHalfClose(ForwardingServerCallListener.java:23) ~[grpc-api-1.49.2.jar!/:1.49.2]
+	at io.grpc.ForwardingServerCallListener$SimpleForwardingServerCallListener.onHalfClose(ForwardingServerCallListener.java:40) ~[grpc-api-1.49.2.jar!/:1.49.2]
+	at io.grpc.Contexts$ContextualizedServerCallListener.onHalfClose(Contexts.java:86) ~[grpc-api-1.49.2.jar!/:1.49.2]
+	at io.grpc.internal.ServerCallImpl$ServerStreamListenerImpl.halfClosed(ServerCallImpl.java:354) ~[grpc-core-1.49.2.jar!/:1.49.2]
+	at io.grpc.internal.ServerImpl$JumpToApplicationThreadServerStreamListener$1HalfClosed.runInContext(ServerImpl.java:866) ~[grpc-core-1.49.2.jar!/:1.49.2]
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37) ~[grpc-core-1.49.2.jar!/:1.49.2]
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133) ~[grpc-core-1.49.2.jar!/:1.49.2]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[?:?]
+	at java.lang.Thread.run(Unknown Source) ~[?:?]
+Caused by: java.util.concurrent.TimeoutException: Stopping server...
+	at com.tableau.oauth.utils.receivers.GenericOAuthReceiver.waitForResponse(GenericOAuthReceiver.java:176) ~[oauth-service-impl-20243.0.5-jre8.rel.jar!/:?]
+	at com.tableau.oauth.requestors.GalopRequestor.getOAuthTokens(GalopRequestor.java:126) ~[oauth-service-impl-20243.0.5-jre8.rel.jar!/:?]
+	... 15 more
+INFO  2025-04-29 17:54:12.701 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - Calling into initialAuthorization call
+INFO  2025-04-29 17:54:12.702 +0700 grpc-default-executor-1 : com.tableau.oauth.service.OAuthRequestorRegistry - Getting the oauth provider for googledrive. Using oauth proxy: Galop.
+INFO  2025-04-29 17:54:12.706 +0700 grpc-default-executor-1 : com.tableau.oauth.requestors.GalopRequestor - Requesting oauth tokens for: googledrive
+INFO  2025-04-29 17:54:12.706 +0700 grpc-default-executor-1 : com.tableau.oauth.requestors.GalopRequestor - Request coming from: desktop
+INFO  2025-04-29 17:54:12.707 +0700 grpc-default-executor-1 : com.tableau.oauth.utils.LoadBrowserHelper - Browsing is available.
+INFO  2025-04-29 17:54:12.707 +0700 grpc-default-executor-1 : com.tableau.oauth.utils.LoadBrowserHelper - Sending browser to: https://galop.connectors.tableau.com/prod/v1/auth/googledrive/desktop?callbackurl=http://localhost:64144/Tokens&username=&instanceurl=&role=
+ERROR 2025-04-29 17:54:22.761 +0700 HTTP-Dispatcher : com.tableau.oauth.utils.I18nStringUtils - Unable to load string IDSOAuthBrowserAuthenticationTitleMsg from bundle strings/oauthServiceImplResourceBundle using locale en-ID but found the string in the en_US bundle. This string has likely not been translated yet.
+ERROR 2025-04-29 17:54:22.761 +0700 HTTP-Dispatcher : com.tableau.oauth.utils.I18nStringUtils - Unable to load string IDSOAuthBrowserLoginDoneMsg from bundle strings/oauthServiceImplResourceBundle using locale en-ID but found the string in the en_US bundle. This string has likely not been translated yet.
+ERROR 2025-04-29 17:54:22.761 +0700 HTTP-Dispatcher : com.tableau.oauth.utils.I18nStringUtils - Unable to load string IDSOauthBrowserLogoAltMsg from bundle strings/oauthServiceImplResourceBundle using locale en-ID but found the string in the en_US bundle. This string has likely not been translated yet.
+INFO  2025-04-29 17:54:22.800 +0700 grpc-default-executor-1 : com.tableau.oauth.requestors.GalopRequestor - Requested Param: ACCESSTOKEN
+INFO  2025-04-29 17:54:22.800 +0700 grpc-default-executor-1 : com.tableau.oauth.requestors.GalopRequestor - Requested Param: REFRESHTOKEN
+INFO  2025-04-29 17:54:22.800 +0700 grpc-default-executor-1 : com.tableau.oauth.requestors.GalopRequestor - Requested Param: access-token-expires-in
+INFO  2025-04-29 17:54:22.800 +0700 grpc-default-executor-1 : com.tableau.oauth.requestors.GalopRequestor - Requested Param: access-token-issue-time
+INFO  2025-04-29 17:54:22.800 +0700 grpc-default-executor-1 : com.tableau.oauth.requestors.GalopRequestor - Requested Param: username
+INFO  2025-04-29 17:54:22.809 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - Tokens returned from grpc call: {ACCESSTOKEN=********, REFRESHTOKEN=********, access-token-expires-in=3599, access-token-issue-time=1745923970152, username=achmadrafishiddik0@gmail.com}
+INFO  2025-04-29 17:54:22.809 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - Tokens returned from grpc call: {ACCESSTOKEN=********, REFRESHTOKEN=********, access-token-expires-in=3599, access-token-issue-time=1745923970152, username=achmadrafishiddik0@gmail.com}
+INFO  2025-04-29 17:54:22.816 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - attempting to place token: ACCESSTOKEN
+INFO  2025-04-29 17:54:22.828 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - attempting to place token: REFRESHTOKEN
+INFO  2025-04-29 17:54:22.828 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - attempting to place token: access-token-expires-in
+INFO  2025-04-29 17:54:22.828 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - attempting to place token: access-token-issue-time
+INFO  2025-04-29 17:54:22.828 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - attempting to place token: username
+INFO  2025-04-29 17:54:22.828 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - attempting to build the response.
+INFO  2025-04-29 17:54:22.828 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - response: {ACCESSTOKEN=********, REFRESHTOKEN=********, access-token-expires-in=3599, access-token-issue-time=1745923970152, username=achmadrafishiddik0@gmail.com}
+INFO  2025-04-29 17:54:22.828 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - response: {ACCESSTOKEN=********, REFRESHTOKEN=********, access-token-expires-in=3599, access-token-issue-time=1745923970152, username=achmadrafishiddik0@gmail.com}
+INFO  2025-04-29 19:23:49.096 +0700 main : com.tableau.OAuthServiceMain - Starting OAuthServiceMain using Java 17.0.12.0.101 on LAPTOP-4C82C4F5 with PID 3316 (C:\Program Files\Tableau\Tableau Public 2025.1\bin\oauthservice.jar started by Rafi in C:\Users\Rafi\AppData\Local\Temp\TableauTemp)
+INFO  2025-04-29 19:23:49.097 +0700 main : com.tableau.OAuthServiceMain - No active profile set, falling back to 1 default profile: "default"
+INFO  2025-04-29 19:23:50.004 +0700 main : com.tableau.grpc.OAuthGrpcServer - OAuthProviderService started, listening on 65167.
+INFO  2025-04-29 19:23:50.059 +0700 main : com.tableau.OAuthServiceMain - Started OAuthServiceMain in 1.338 seconds (JVM running for 2.736)
+INFO  2025-04-29 19:23:50.295 +0700 grpc-default-executor-0 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - Calling into initialAuthorization call
+INFO  2025-04-29 19:23:50.296 +0700 grpc-default-executor-0 : com.tableau.oauth.service.OAuthRequestorRegistry - Getting the oauth provider for googledrive. Using oauth proxy: Galop.
+INFO  2025-04-29 19:23:50.308 +0700 grpc-default-executor-0 : com.tableau.oauth.requestors.GalopRequestor - Requesting oauth tokens for: googledrive
+INFO  2025-04-29 19:23:50.308 +0700 grpc-default-executor-0 : com.tableau.oauth.requestors.GalopRequestor - Request coming from: desktop
+INFO  2025-04-29 19:23:50.412 +0700 grpc-default-executor-0 : com.tableau.oauth.utils.LoadBrowserHelper - Browsing is available.
+INFO  2025-04-29 19:23:50.412 +0700 grpc-default-executor-0 : com.tableau.oauth.utils.LoadBrowserHelper - Sending browser to: https://galop.connectors.tableau.com/prod/v1/auth/googledrive/desktop?callbackurl=http://localhost:65169/Tokens&username=&instanceurl=&role=
+INFO  2025-04-29 19:24:45.920 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - Received request to cancel the current authentication login.
+INFO  2025-04-29 19:24:45.920 +0700 grpc-default-executor-1 : com.tableau.oauth.requestors.GalopRequestor - Cancel login.
+WARN  2025-04-29 19:24:45.921 +0700 grpc-default-executor-0 : com.tableau.oauth.utils.receivers.GenericOAuthReceiver - Operation interrupted, throwing timeout error.
+ERROR 2025-04-29 19:24:45.921 +0700 grpc-default-executor-0 : com.tableau.oauth.requestors.GalopRequestor - Stopping server...
+INFO  2025-04-29 19:24:45.921 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - Altering the response observer that the call is completed
+ERROR 2025-04-29 19:24:45.921 +0700 grpc-default-executor-0 : com.tableau.oauth.service.OAuthService - Exception thrown while attempting to get the oauth tokens: java.io.IOException: Stopping server...
+ERROR 2025-04-29 19:24:45.921 +0700 grpc-default-executor-0 : com.tableau.oauth.service.OAuthService - Authorization request timed out. The user may have closed the browser or cancelled the request.
+java.io.IOException: Stopping server...
+	at com.tableau.oauth.requestors.GalopRequestor.asCleanIOException(GalopRequestor.java:97) ~[oauth-service-impl-20251.0.4-jre8.rel.jar!/:?]
+	at com.tableau.oauth.requestors.GalopRequestor.getOAuthTokens(GalopRequestor.java:131) ~[oauth-service-impl-20251.0.4-jre8.rel.jar!/:?]
+	at com.tableau.oauth.service.OAuthService.initialAuthorization(OAuthService.java:115) ~[oauth-service-impl-20251.0.4-jre8.rel.jar!/:?]
+	at com.tableau.oauth.grpc.OAuthV1GrpcAdapter.initialAuthorization(OAuthV1GrpcAdapter.java:46) ~[oauth-service-impl-20251.0.4-jre8.rel.jar!/:?]
+	at com.tableau.connect.oauthservice.OAuthServiceGrpc$MethodHandlers.invoke(OAuthServiceGrpc.java:830) ~[classes!/:?]
+	at io.grpc.stub.ServerCalls$UnaryServerCallHandler$UnaryServerCallListener.onHalfClose(ServerCalls.java:182) ~[grpc-stub-1.65.1.jar!/:1.65.1]
+	at io.grpc.PartialForwardingServerCallListener.onHalfClose(PartialForwardingServerCallListener.java:35) ~[grpc-api-1.65.1.jar!/:1.65.1]
+	at io.grpc.ForwardingServerCallListener.onHalfClose(ForwardingServerCallListener.java:23) ~[grpc-api-1.65.1.jar!/:1.65.1]
+	at io.grpc.ForwardingServerCallListener$SimpleForwardingServerCallListener.onHalfClose(ForwardingServerCallListener.java:40) ~[grpc-api-1.65.1.jar!/:1.65.1]
+	at io.grpc.Contexts$ContextualizedServerCallListener.onHalfClose(Contexts.java:86) ~[grpc-api-1.65.1.jar!/:1.65.1]
+	at io.grpc.internal.ServerCallImpl$ServerStreamListenerImpl.halfClosed(ServerCallImpl.java:356) ~[grpc-core-1.65.1.jar!/:1.65.1]
+	at io.grpc.internal.ServerImpl$JumpToApplicationThreadServerStreamListener$1HalfClosed.runInContext(ServerImpl.java:861) ~[grpc-core-1.65.1.jar!/:1.65.1]
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37) ~[grpc-core-1.65.1.jar!/:1.65.1]
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133) ~[grpc-core-1.65.1.jar!/:1.65.1]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.util.concurrent.TimeoutException: Stopping server...
+	at com.tableau.oauth.utils.receivers.GenericOAuthReceiver.waitForResponse(GenericOAuthReceiver.java:176) ~[oauth-service-impl-20251.0.4-jre8.rel.jar!/:?]
+	at com.tableau.oauth.requestors.GalopRequestor.getOAuthTokens(GalopRequestor.java:126) ~[oauth-service-impl-20251.0.4-jre8.rel.jar!/:?]
+	... 15 more
+INFO  2025-04-29 19:24:49.583 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - Calling into initialAuthorization call
+INFO  2025-04-29 19:24:49.584 +0700 grpc-default-executor-1 : com.tableau.oauth.service.OAuthRequestorRegistry - Getting the oauth provider for googledrive. Using oauth proxy: Galop.
+INFO  2025-04-29 19:24:49.587 +0700 grpc-default-executor-1 : com.tableau.oauth.requestors.GalopRequestor - Requesting oauth tokens for: googledrive
+INFO  2025-04-29 19:24:49.587 +0700 grpc-default-executor-1 : com.tableau.oauth.requestors.GalopRequestor - Request coming from: desktop
+INFO  2025-04-29 19:24:49.588 +0700 grpc-default-executor-1 : com.tableau.oauth.utils.LoadBrowserHelper - Browsing is available.
+INFO  2025-04-29 19:24:49.588 +0700 grpc-default-executor-1 : com.tableau.oauth.utils.LoadBrowserHelper - Sending browser to: https://galop.connectors.tableau.com/prod/v1/auth/googledrive/desktop?callbackurl=http://localhost:65178/Tokens&username=&instanceurl=&role=
+ERROR 2025-04-29 19:24:58.872 +0700 HTTP-Dispatcher : com.tableau.oauth.utils.I18nStringUtils - Unable to load string IDSOAuthBrowserAuthenticationTitleMsg from bundle strings/oauthServiceImplResourceBundle using locale en-ID but found the string in the en_US bundle. This string has likely not been translated yet.
+ERROR 2025-04-29 19:24:58.872 +0700 HTTP-Dispatcher : com.tableau.oauth.utils.I18nStringUtils - Unable to load string IDSOAuthBrowserLoginDoneMsg from bundle strings/oauthServiceImplResourceBundle using locale en-ID but found the string in the en_US bundle. This string has likely not been translated yet.
+ERROR 2025-04-29 19:24:58.872 +0700 HTTP-Dispatcher : com.tableau.oauth.utils.I18nStringUtils - Unable to load string IDSOauthBrowserLogoAltMsg from bundle strings/oauthServiceImplResourceBundle using locale en-ID but found the string in the en_US bundle. This string has likely not been translated yet.
+INFO  2025-04-29 19:24:58.882 +0700 grpc-default-executor-1 : com.tableau.oauth.requestors.GalopRequestor - Requested Param: ACCESSTOKEN
+INFO  2025-04-29 19:24:58.882 +0700 grpc-default-executor-1 : com.tableau.oauth.requestors.GalopRequestor - Requested Param: REFRESHTOKEN
+INFO  2025-04-29 19:24:58.882 +0700 grpc-default-executor-1 : com.tableau.oauth.requestors.GalopRequestor - Requested Param: access-token-expires-in
+INFO  2025-04-29 19:24:58.882 +0700 grpc-default-executor-1 : com.tableau.oauth.requestors.GalopRequestor - Requested Param: access-token-issue-time
+INFO  2025-04-29 19:24:58.882 +0700 grpc-default-executor-1 : com.tableau.oauth.requestors.GalopRequestor - Requested Param: username
+INFO  2025-04-29 19:24:58.883 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - Tokens returned from grpc call: {ACCESSTOKEN=********, REFRESHTOKEN=********, access-token-expires-in=3599, access-token-issue-time=1745929406296, username=achmadrafishiddik0@gmail.com}
+INFO  2025-04-29 19:24:58.883 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - Tokens returned from grpc call: {ACCESSTOKEN=********, REFRESHTOKEN=********, access-token-expires-in=3599, access-token-issue-time=1745929406296, username=achmadrafishiddik0@gmail.com}
+INFO  2025-04-29 19:24:58.883 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - attempting to place token: ACCESSTOKEN
+INFO  2025-04-29 19:24:58.884 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - attempting to place token: REFRESHTOKEN
+INFO  2025-04-29 19:24:58.884 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - attempting to place token: access-token-expires-in
+INFO  2025-04-29 19:24:58.884 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - attempting to place token: access-token-issue-time
+INFO  2025-04-29 19:24:58.884 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - attempting to place token: username
+INFO  2025-04-29 19:24:58.884 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - attempting to build the response.
+INFO  2025-04-29 19:24:58.884 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - response: {ACCESSTOKEN=********, REFRESHTOKEN=********, access-token-expires-in=3599, access-token-issue-time=1745929406296, username=achmadrafishiddik0@gmail.com}
+INFO  2025-04-29 19:24:58.884 +0700 grpc-default-executor-1 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - response: {ACCESSTOKEN=********, REFRESHTOKEN=********, access-token-expires-in=3599, access-token-issue-time=1745929406296, username=achmadrafishiddik0@gmail.com}
+INFO  2025-04-29 19:27:13.956 +0700 grpc-default-executor-2 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - Calling into initialAuthorization call
+INFO  2025-04-29 19:27:13.956 +0700 grpc-default-executor-2 : com.tableau.oauth.service.OAuthRequestorRegistry - Getting the oauth provider for googledrive. Using oauth proxy: Galop.
+INFO  2025-04-29 19:27:13.960 +0700 grpc-default-executor-2 : com.tableau.oauth.requestors.GalopRequestor - Requesting oauth tokens for: googledrive
+INFO  2025-04-29 19:27:13.960 +0700 grpc-default-executor-2 : com.tableau.oauth.requestors.GalopRequestor - Request coming from: desktop
+INFO  2025-04-29 19:27:13.960 +0700 grpc-default-executor-2 : com.tableau.oauth.utils.LoadBrowserHelper - Browsing is available.
+INFO  2025-04-29 19:27:13.960 +0700 grpc-default-executor-2 : com.tableau.oauth.utils.LoadBrowserHelper - Sending browser to: https://galop.connectors.tableau.com/prod/v1/auth/googledrive/desktop?callbackurl=http://localhost:65389/Tokens&username=&instanceurl=&role=
+ERROR 2025-04-29 19:27:23.037 +0700 HTTP-Dispatcher : com.tableau.oauth.utils.I18nStringUtils - Unable to load string IDSOAuthBrowserAuthenticationTitleMsg from bundle strings/oauthServiceImplResourceBundle using locale en-ID but found the string in the en_US bundle. This string has likely not been translated yet.
+ERROR 2025-04-29 19:27:23.037 +0700 HTTP-Dispatcher : com.tableau.oauth.utils.I18nStringUtils - Unable to load string IDSOAuthBrowserLoginDoneMsg from bundle strings/oauthServiceImplResourceBundle using locale en-ID but found the string in the en_US bundle. This string has likely not been translated yet.
+ERROR 2025-04-29 19:27:23.038 +0700 HTTP-Dispatcher : com.tableau.oauth.utils.I18nStringUtils - Unable to load string IDSOauthBrowserLogoAltMsg from bundle strings/oauthServiceImplResourceBundle using locale en-ID but found the string in the en_US bundle. This string has likely not been translated yet.
+INFO  2025-04-29 19:27:23.041 +0700 grpc-default-executor-2 : com.tableau.oauth.requestors.GalopRequestor - Requested Param: ACCESSTOKEN
+INFO  2025-04-29 19:27:23.041 +0700 grpc-default-executor-2 : com.tableau.oauth.requestors.GalopRequestor - Requested Param: REFRESHTOKEN
+INFO  2025-04-29 19:27:23.041 +0700 grpc-default-executor-2 : com.tableau.oauth.requestors.GalopRequestor - Requested Param: access-token-expires-in
+INFO  2025-04-29 19:27:23.041 +0700 grpc-default-executor-2 : com.tableau.oauth.requestors.GalopRequestor - Requested Param: access-token-issue-time
+INFO  2025-04-29 19:27:23.041 +0700 grpc-default-executor-2 : com.tableau.oauth.requestors.GalopRequestor - Requested Param: username
+INFO  2025-04-29 19:27:23.041 +0700 grpc-default-executor-2 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - Tokens returned from grpc call: {ACCESSTOKEN=********, REFRESHTOKEN=********, access-token-expires-in=3599, access-token-issue-time=1745929550432, username=achmadrafishiddik0@gmail.com}
+INFO  2025-04-29 19:27:23.041 +0700 grpc-default-executor-2 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - Tokens returned from grpc call: {ACCESSTOKEN=********, REFRESHTOKEN=********, access-token-expires-in=3599, access-token-issue-time=1745929550432, username=achmadrafishiddik0@gmail.com}
+INFO  2025-04-29 19:27:23.041 +0700 grpc-default-executor-2 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - attempting to place token: ACCESSTOKEN
+INFO  2025-04-29 19:27:23.041 +0700 grpc-default-executor-2 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - attempting to place token: REFRESHTOKEN
+INFO  2025-04-29 19:27:23.041 +0700 grpc-default-executor-2 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - attempting to place token: access-token-expires-in
+INFO  2025-04-29 19:27:23.041 +0700 grpc-default-executor-2 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - attempting to place token: access-token-issue-time
+INFO  2025-04-29 19:27:23.041 +0700 grpc-default-executor-2 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - attempting to place token: username
+INFO  2025-04-29 19:27:23.041 +0700 grpc-default-executor-2 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - attempting to build the response.
+INFO  2025-04-29 19:27:23.041 +0700 grpc-default-executor-2 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - response: {ACCESSTOKEN=********, REFRESHTOKEN=********, access-token-expires-in=3599, access-token-issue-time=1745929550432, username=achmadrafishiddik0@gmail.com}
+INFO  2025-04-29 19:27:23.041 +0700 grpc-default-executor-2 : com.tableau.oauth.grpc.OAuthV1GrpcAdapter - response: {ACCESSTOKEN=********, REFRESHTOKEN=********, access-token-expires-in=3599, access-token-issue-time=1745929550432, username=achmadrafishiddik0@gmail.com}
