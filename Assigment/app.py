@@ -21,7 +21,7 @@ st.set_page_config(
 # --- Load Data ---
 @st.cache_data 
 def load_data():
-    return pd.read_csv("data/df_no_outliers.csv")  # Perbaiki backslash jadi slash
+    return pd.read_csv("data/df_no_outliers.csv") # Perbaiki backslash jadi slash
 
 
 df = load_data()
